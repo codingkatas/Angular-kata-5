@@ -45,27 +45,77 @@
     <div class="template">
 
         <h1>Kata 5 - Forms and validation</h1>
+        <br><br>
 
-        <form name="kataform">
+        <div style="width:800px; margin: auto;">
 
-            <input type="email" placeholder="Enter email" ng-model="email" required=""/>
-            <br><br>
-            <input type="text" placeholder="Enter name" ng-model="name" required="" />
-            <br><br>
-            <input type="url" placeholder="Enter url" ng-model="phone" />
+            <form name="userForm">
 
-            <br><br>
-            <b>Valid : {{ kataform.$valid }}</b>
-            <br><br>
-            <b>Invalid : {{ kataform.$invalid }}</b>
-            <br><br>
-            <button>Submit</button>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <input type="email" name="email" ng-model="user.email" placeholder="Enter email" required/>
+                        </td>
+                        <td>
+                            <b>Valid : {{ userForm.email.$valid }}</b>
+                        </td>
+                        <td style="width: 320px;">
+                            <p>
+                                <span ng-show="userForm.email.$error.required">
+                                    Email address is required
+                                </span>
+                                <span ng-show="userForm.email.$error.email">
+                                    Please enter a valid email address
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="name" ng-minlength="2" ng-maxlength="30" ng-model="user.name" placeholder="Enter name" required/></td>
+                        <td><b>Valid : {{ userForm.name.$valid }}</b></td>
+                        <td>
+                            <p>
+                                <span ng-show="userForm.name.$error.required">
+                                    Name is a required field
+                                </span>
+                                <span ng-show="userForm.name.$error.minlength">
+                                    Email should be of minimum 2 char length
+                                </span>
+                                <span ng-show="userForm.name.$error.maxlength">
+                                    Email should be of maximum 30 char length
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="tel" name="phone" ng-maxlength="5" ng-model="user.phone" placeholder="Enter phone" /></td>
+                        <td><b>Valid : {{ userForm.phone.$valid }}</b></td>
+                        <td>
+                            <p>
+                                <span ng-show="userForm.phone.$error.maxlength">
+                                    Email should be of maximum 5 char length
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
 
-        </form>
+                    <tr>
+                        <td><b>Valid : {{ userForm.$valid }}</b></td>
+                        <td><b>Invalid : {{ userForm.$invalid }}</b></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button>Submit</button>
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
 
-
+            </form>
+        </div>
     </div>
-
 </div>
 
 <div align="center">
